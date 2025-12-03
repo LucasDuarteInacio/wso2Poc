@@ -1,13 +1,8 @@
 openapi: 3.0.0
 info:
   title: Order Processing Management API
-  description: API REST para gerenciamento de pedidos de e-commerce
+  description: API REST para gerenciamento de pedidos
   version: 1.0.0
-servers:
-  - url: http://host.docker.internal:8080
-    description: API Local (via Docker)
-  - url: http://localhost:8080
-    description: API Local
 
 paths:
   /api/clientes:
