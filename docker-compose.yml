@@ -1,0 +1,43 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: order_processing_postgres
+    environment:
+      POSTGRES_DB: order_processing_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  wso2am:
+    image: wso2/wso2am:4.5.0
+    container_name: order_processing_wso2
+    user: root
+    ports:
+      - "9443:9443"
+      - "8243:8243"
+      - "8280:8280"
+      - "9763:9763"
+    volumes:
+      - wso2_data:/home/wso2carbon/wso2am-4.5.0/repository
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -k https://localhost:9443/publisher || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 240s
+
+volumes:
+  postgres_data:
+  wso2_data:
+

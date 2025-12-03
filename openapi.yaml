@@ -1,0 +1,425 @@
+openapi: 3.0.0
+info:
+  title: Order Processing Management API
+  description: API REST para gerenciamento de pedidos de e-commerce
+  version: 1.0.0
+servers:
+  - url: http://host.docker.internal:8080/api
+    description: API Local (via Docker)
+  - url: http://localhost:8080/api
+    description: API Local
+
+paths:
+  /clientes:
+    get:
+      summary: Listar todos os clientes
+      operationId: listarClientes
+      tags:
+        - Clientes
+      responses:
+        '200':
+          description: Lista de clientes retornada com sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cliente'
+    post:
+      summary: Criar novo cliente
+      operationId: criarCliente
+      tags:
+        - Clientes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClienteInput'
+      responses:
+        '201':
+          description: Cliente criado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cliente'
+        '400':
+          description: Erro de validação
+
+  /clientes/{id}:
+    get:
+      summary: Buscar cliente por ID
+      operationId: buscarClientePorId
+      tags:
+        - Clientes
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Cliente encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cliente'
+        '404':
+          description: Cliente não encontrado
+
+  /produtos:
+    get:
+      summary: Listar todos os produtos
+      operationId: listarProdutos
+      tags:
+        - Produtos
+      responses:
+        '200':
+          description: Lista de produtos retornada com sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Produto'
+    post:
+      summary: Criar novo produto
+      operationId: criarProduto
+      tags:
+        - Produtos
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProdutoInput'
+      responses:
+        '201':
+          description: Produto criado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Produto'
+        '400':
+          description: Erro de validação
+
+  /produtos/{id}:
+    get:
+      summary: Buscar produto por ID
+      operationId: buscarProdutoPorId
+      tags:
+        - Produtos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Produto encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Produto'
+        '404':
+          description: Produto não encontrado
+    put:
+      summary: Atualizar produto
+      operationId: atualizarProduto
+      tags:
+        - Produtos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProdutoInput'
+      responses:
+        '200':
+          description: Produto atualizado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Produto'
+        '404':
+          description: Produto não encontrado
+    delete:
+      summary: Excluir produto
+      operationId: excluirProduto
+      tags:
+        - Produtos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Produto excluído com sucesso
+        '404':
+          description: Produto não encontrado
+
+  /pedidos:
+    get:
+      summary: Listar todos os pedidos
+      operationId: listarPedidos
+      tags:
+        - Pedidos
+      responses:
+        '200':
+          description: Lista de pedidos retornada com sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pedido'
+    post:
+      summary: Criar novo pedido
+      operationId: criarPedido
+      tags:
+        - Pedidos
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PedidoInput'
+      responses:
+        '201':
+          description: Pedido criado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pedido'
+        '400':
+          description: Erro de validação
+
+  /pedidos/{id}:
+    get:
+      summary: Buscar pedido por ID
+      operationId: buscarPedidoPorId
+      tags:
+        - Pedidos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Pedido encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pedido'
+        '404':
+          description: Pedido não encontrado
+
+  /pedidos/cliente/{clienteId}:
+    get:
+      summary: Listar pedidos por cliente
+      operationId: listarPedidosPorCliente
+      tags:
+        - Pedidos
+      parameters:
+        - name: clienteId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Lista de pedidos do cliente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pedido'
+
+  /pedidos/{id}/status:
+    patch:
+      summary: Atualizar status do pedido
+      operationId: atualizarStatusPedido
+      tags:
+        - Pedidos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AtualizarStatusPedido'
+      responses:
+        '200':
+          description: Status atualizado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pedido'
+        '404':
+          description: Pedido não encontrado
+
+components:
+  schemas:
+    Cliente:
+      type: object
+      properties:
+        id:
+          type: integer
+        nome:
+          type: string
+        email:
+          type: string
+        cpf:
+          type: string
+        dataCriacao:
+          type: string
+          format: date-time
+
+    ClienteInput:
+      type: object
+      required:
+        - nome
+        - email
+        - cpf
+      properties:
+        nome:
+          type: string
+        email:
+          type: string
+          format: email
+        cpf:
+          type: string
+
+    Produto:
+      type: object
+      properties:
+        id:
+          type: integer
+        nome:
+          type: string
+        descricao:
+          type: string
+        preco:
+          type: number
+          format: decimal
+        quantidadeEstoque:
+          type: integer
+        dataCriacao:
+          type: string
+          format: date-time
+        dataAtualizacao:
+          type: string
+          format: date-time
+
+    ProdutoInput:
+      type: object
+      required:
+        - nome
+        - preco
+        - quantidadeEstoque
+      properties:
+        nome:
+          type: string
+        descricao:
+          type: string
+        preco:
+          type: number
+          format: decimal
+        quantidadeEstoque:
+          type: integer
+
+    Pedido:
+      type: object
+      properties:
+        id:
+          type: integer
+        clienteId:
+          type: integer
+        clienteNome:
+          type: string
+        status:
+          type: string
+          enum: [PENDENTE, CONFIRMADO, PREPARANDO, ENVIADO, ENTREGUE, CANCELADO]
+        valorTotal:
+          type: number
+          format: decimal
+        itens:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemPedido'
+        dataCriacao:
+          type: string
+          format: date-time
+        dataAtualizacao:
+          type: string
+          format: date-time
+
+    ItemPedido:
+      type: object
+      properties:
+        id:
+          type: integer
+        produtoId:
+          type: integer
+        produtoNome:
+          type: string
+        quantidade:
+          type: integer
+        precoUnitario:
+          type: number
+          format: decimal
+        subtotal:
+          type: number
+          format: decimal
+
+    PedidoInput:
+      type: object
+      required:
+        - clienteId
+        - itens
+      properties:
+        clienteId:
+          type: integer
+        itens:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemPedidoInput'
+
+    ItemPedidoInput:
+      type: object
+      required:
+        - produtoId
+        - quantidade
+      properties:
+        produtoId:
+          type: integer
+        quantidade:
+          type: integer
+
+    AtualizarStatusPedido:
+      type: object
+      required:
+        - status
+      properties:
+        status:
+          type: string
+          enum: [PENDENTE, CONFIRMADO, PREPARANDO, ENVIADO, ENTREGUE, CANCELADO]
+
