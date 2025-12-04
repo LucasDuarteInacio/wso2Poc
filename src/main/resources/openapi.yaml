@@ -1,52 +1,52 @@
 openapi: 3.0.0
 info:
   title: Order Processing Management API
-  description: API REST para gerenciamento de pedidos
+  description: REST API for order management
   version: 1.0.0
 
 paths:
-  /clientes:
+  /customers:
     get:
-      summary: Listar todos os clientes
-      operationId: listarClientes
+      summary: List all customers
+      operationId: getAllCustomers
       tags:
-        - Clientes
+        - Customers
       responses:
         '200':
-          description: Lista de clientes retornada com sucesso
+          description: Customer list returned successfully
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Cliente'
+                  $ref: '#/components/schemas/Customer'
     post:
-      summary: Criar novo cliente
-      operationId: criarCliente
+      summary: Create new customer
+      operationId: createCustomer
       tags:
-        - Clientes
+        - Customers
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ClienteInput'
+              $ref: '#/components/schemas/CustomerInput'
       responses:
         '201':
-          description: Cliente criado com sucesso
+          description: Customer created successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Cliente'
+                $ref: '#/components/schemas/Customer'
         '400':
-          description: Erro de validação
+          description: Validation error
 
-  /clientes/{id}:
+  /customers/{id}:
     get:
-      summary: Buscar cliente por ID
-      operationId: buscarClientePorId
+      summary: Get customer by ID
+      operationId: getCustomerById
       tags:
-        - Clientes
+        - Customers
       parameters:
         - name: id
           in: path
@@ -55,56 +55,56 @@ paths:
             type: integer
       responses:
         '200':
-          description: Cliente encontrado
+          description: Customer found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Cliente'
+                $ref: '#/components/schemas/Customer'
         '404':
-          description: Cliente não encontrado
+          description: Customer not found
 
-  /produtos:
+  /products:
     get:
-      summary: Listar todos os produtos
-      operationId: listarProdutos
+      summary: List all products
+      operationId: getAllProducts
       tags:
-        - Produtos
+        - Products
       responses:
         '200':
-          description: Lista de produtos retornada com sucesso
+          description: Product list returned successfully
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Produto'
+                  $ref: '#/components/schemas/Product'
     post:
-      summary: Criar novo produto
-      operationId: criarProduto
+      summary: Create new product
+      operationId: createProduct
       tags:
-        - Produtos
+        - Products
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ProdutoInput'
+              $ref: '#/components/schemas/ProductInput'
       responses:
         '201':
-          description: Produto criado com sucesso
+          description: Product created successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Produto'
+                $ref: '#/components/schemas/Product'
         '400':
-          description: Erro de validação
+          description: Validation error
 
-  /produtos/{id}:
+  /products/{id}:
     get:
-      summary: Buscar produto por ID
-      operationId: buscarProdutoPorId
+      summary: Get product by ID
+      operationId: getProductById
       tags:
-        - Produtos
+        - Products
       parameters:
         - name: id
           in: path
@@ -113,18 +113,18 @@ paths:
             type: integer
       responses:
         '200':
-          description: Produto encontrado
+          description: Product found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Produto'
+                $ref: '#/components/schemas/Product'
         '404':
-          description: Produto não encontrado
+          description: Product not found
     put:
-      summary: Atualizar produto
-      operationId: atualizarProduto
+      summary: Update product
+      operationId: updateProduct
       tags:
-        - Produtos
+        - Products
       parameters:
         - name: id
           in: path
@@ -136,21 +136,21 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ProdutoInput'
+              $ref: '#/components/schemas/ProductInput'
       responses:
         '200':
-          description: Produto atualizado com sucesso
+          description: Product updated successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Produto'
+                $ref: '#/components/schemas/Product'
         '404':
-          description: Produto não encontrado
+          description: Product not found
     delete:
-      summary: Excluir produto
-      operationId: excluirProduto
+      summary: Delete product
+      operationId: deleteProduct
       tags:
-        - Produtos
+        - Products
       parameters:
         - name: id
           in: path
@@ -159,52 +159,52 @@ paths:
             type: integer
       responses:
         '204':
-          description: Produto excluído com sucesso
+          description: Product deleted successfully
         '404':
-          description: Produto não encontrado
+          description: Product not found
 
-  /pedidos:
+  /orders:
     get:
-      summary: Listar todos os pedidos
-      operationId: listarPedidos
+      summary: List all orders
+      operationId: getAllOrders
       tags:
-        - Pedidos
+        - Orders
       responses:
         '200':
-          description: Lista de pedidos retornada com sucesso
+          description: Order list returned successfully
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Pedido'
+                  $ref: '#/components/schemas/Order'
     post:
-      summary: Criar novo pedido
-      operationId: criarPedido
+      summary: Create new order
+      operationId: createOrder
       tags:
-        - Pedidos
+        - Orders
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PedidoInput'
+              $ref: '#/components/schemas/OrderInput'
       responses:
         '201':
-          description: Pedido criado com sucesso
+          description: Order created successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pedido'
+                $ref: '#/components/schemas/Order'
         '400':
-          description: Erro de validação
+          description: Validation error
 
-  /pedidos/{id}:
+  /orders/{id}:
     get:
-      summary: Buscar pedido por ID
-      operationId: buscarPedidoPorId
+      summary: Get order by ID
+      operationId: getOrderById
       tags:
-        - Pedidos
+        - Orders
       parameters:
         - name: id
           in: path
@@ -213,42 +213,42 @@ paths:
             type: integer
       responses:
         '200':
-          description: Pedido encontrado
+          description: Order found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pedido'
+                $ref: '#/components/schemas/Order'
         '404':
-          description: Pedido não encontrado
+          description: Order not found
 
-  /pedidos/cliente/{clienteId}:
+  /orders/customer/{customerId}:
     get:
-      summary: Listar pedidos por cliente
-      operationId: listarPedidosPorCliente
+      summary: List orders by customer
+      operationId: getOrdersByCustomer
       tags:
-        - Pedidos
+        - Orders
       parameters:
-        - name: clienteId
+        - name: customerId
           in: path
           required: true
           schema:
             type: integer
       responses:
         '200':
-          description: Lista de pedidos do cliente
+          description: Customer orders list
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Pedido'
+                  $ref: '#/components/schemas/Order'
 
-  /pedidos/{id}/status:
+  /orders/{id}/status:
     patch:
-      summary: Atualizar status do pedido
-      operationId: atualizarStatusPedido
+      summary: Update order status
+      operationId: updateOrderStatus
       tags:
-        - Pedidos
+        - Orders
       parameters:
         - name: id
           in: path
@@ -260,42 +260,42 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AtualizarStatusPedido'
+              $ref: '#/components/schemas/UpdateOrderStatus'
       responses:
         '200':
-          description: Status atualizado com sucesso
+          description: Status updated successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pedido'
+                $ref: '#/components/schemas/Order'
         '404':
-          description: Pedido não encontrado
+          description: Order not found
 
 components:
   schemas:
-    Cliente:
+    Customer:
       type: object
       properties:
         id:
           type: integer
-        nome:
+        name:
           type: string
         email:
           type: string
         cpf:
           type: string
-        dataCriacao:
+        createdAt:
           type: string
           format: date-time
 
-    ClienteInput:
+    CustomerInput:
       type: object
       required:
-        - nome
+        - name
         - email
         - cpf
       properties:
-        nome:
+        name:
           type: string
         email:
           type: string
@@ -303,118 +303,117 @@ components:
         cpf:
           type: string
 
-    Produto:
+    Product:
       type: object
       properties:
         id:
           type: integer
-        nome:
+        name:
           type: string
-        descricao:
+        description:
           type: string
-        preco:
+        price:
           type: number
           format: decimal
-        quantidadeEstoque:
+        stockQuantity:
           type: integer
-        dataCriacao:
+        createdAt:
           type: string
           format: date-time
-        dataAtualizacao:
+        updatedAt:
           type: string
           format: date-time
 
-    ProdutoInput:
+    ProductInput:
       type: object
       required:
-        - nome
-        - preco
-        - quantidadeEstoque
+        - name
+        - price
+        - stockQuantity
       properties:
-        nome:
+        name:
           type: string
-        descricao:
+        description:
           type: string
-        preco:
+        price:
           type: number
           format: decimal
-        quantidadeEstoque:
+        stockQuantity:
           type: integer
 
-    Pedido:
+    Order:
       type: object
       properties:
         id:
           type: integer
-        clienteId:
+        customerId:
           type: integer
-        clienteNome:
+        customerName:
           type: string
         status:
           type: string
-          enum: [PENDENTE, CONFIRMADO, PREPARANDO, ENVIADO, ENTREGUE, CANCELADO]
-        valorTotal:
+          enum: [PENDING, CONFIRMED, PREPARING, SHIPPED, DELIVERED, CANCELLED]
+        totalAmount:
           type: number
           format: decimal
-        itens:
+        items:
           type: array
           items:
-            $ref: '#/components/schemas/ItemPedido'
-        dataCriacao:
+            $ref: '#/components/schemas/OrderItem'
+        createdAt:
           type: string
           format: date-time
-        dataAtualizacao:
+        updatedAt:
           type: string
           format: date-time
 
-    ItemPedido:
+    OrderItem:
       type: object
       properties:
         id:
           type: integer
-        produtoId:
+        productId:
           type: integer
-        produtoNome:
+        productName:
           type: string
-        quantidade:
+        quantity:
           type: integer
-        precoUnitario:
+        unitPrice:
           type: number
           format: decimal
         subtotal:
           type: number
           format: decimal
 
-    PedidoInput:
+    OrderInput:
       type: object
       required:
-        - clienteId
-        - itens
+        - customerId
+        - items
       properties:
-        clienteId:
+        customerId:
           type: integer
-        itens:
+        items:
           type: array
           items:
-            $ref: '#/components/schemas/ItemPedidoInput'
+            $ref: '#/components/schemas/OrderItemInput'
 
-    ItemPedidoInput:
+    OrderItemInput:
       type: object
       required:
-        - produtoId
-        - quantidade
+        - productId
+        - quantity
       properties:
-        produtoId:
+        productId:
           type: integer
-        quantidade:
+        quantity:
           type: integer
 
-    AtualizarStatusPedido:
+    UpdateOrderStatus:
       type: object
       required:
         - status
       properties:
         status:
           type: string
-          enum: [PENDENTE, CONFIRMADO, PREPARANDO, ENVIADO, ENTREGUE, CANCELADO]
-
+          enum: [PENDING, CONFIRMED, PREPARING, SHIPPED, DELIVERED, CANCELLED]
