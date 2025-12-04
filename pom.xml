@@ -157,7 +157,9 @@
                                 <openApiNullable>false</openApiNullable>
                                 <useTags>true</useTags>
                                 <basePackage>com.challenge.OrderProcessingManagement</basePackage>
-                                <delegatePattern>true</delegatePattern>
+                                <delegatePattern>false</delegatePattern>
+								 <useDefaultInterface>false</useDefaultInterface>
+                                <returnResponse>false</returnResponse>
                             </configOptions>
                         </configuration>
                     </execution>

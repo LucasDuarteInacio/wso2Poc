@@ -15,13 +15,9 @@ import java.nio.charset.StandardCharsets;
 @Configuration
 public class OpenApiConfig {
 
-    private static final Logger logger = LoggerFactory.getLogger(OpenApiConfig.class);
-
-    @SneakyThrows
     @Bean
+    @SneakyThrows
     public OpenAPI customOpenAPI() {
-
-
             ClassPathResource resource = new ClassPathResource("openapi.yaml");
             String openApiContent = new String(resource.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
 
