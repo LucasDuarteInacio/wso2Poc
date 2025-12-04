@@ -25,15 +25,13 @@ public class CustomersControllerImpl implements CustomersApi {
 
     @Override
     public ResponseEntity<Customer> createCustomer(CustomerInput customerInput) {
-        System.out.println("Creating Customer: " + customerInput.getName());
-        // TODO: Implement logic to create a new customer
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        Customer customer = customerService.createCustomer(customerInput);
+        return new ResponseEntity<>(customer, HttpStatus.CREATED);
     }
 
     @Override
     public ResponseEntity<Customer> getCustomerById(Integer id) {
-        System.out.println("Finding Customer by ID: " + id);
-        // TODO: Implement logic to find customer by ID
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        Customer customer = customerService.findCustomerById(id.longValue());
+        return ResponseEntity.ok(customer);
     }
 }

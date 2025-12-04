@@ -264,7 +264,7 @@ databaseChangeLog:
                   valueNumeric: 1
               - column:
                   name: status
-                  value: CONFIRMADO
+                  value: CONFIRMED
               - column:
                   name: valor_total
                   value: 4047.70
@@ -282,7 +282,7 @@ databaseChangeLog:
                   valueNumeric: 2
               - column:
                   name: status
-                  value: PREPARANDO
+                  value: PREPARING
               - column:
                   name: valor_total
                   value: 3899.89
@@ -300,7 +300,7 @@ databaseChangeLog:
                   valueNumeric: 1
               - column:
                   name: status
-                  value: ENVIADO
+                  value: SHIPPED
               - column:
                   name: valor_total
                   value: 1499.00
@@ -318,7 +318,7 @@ databaseChangeLog:
                   valueNumeric: 3
               - column:
                   name: status
-                  value: PENDENTE
+                  value: PENDING
               - column:
                   name: valor_total
                   value: 1048.90
@@ -336,7 +336,7 @@ databaseChangeLog:
                   valueNumeric: 4
               - column:
                   name: status
-                  value: ENTREGUE
+                  value: DELIVERED
               - column:
                   name: valor_total
                   value: 3499.00
@@ -354,7 +354,7 @@ databaseChangeLog:
                   valueNumeric: 5
               - column:
                   name: status
-                  value: CONFIRMADO
+                  value: CONFIRMED
               - column:
                   name: valor_total
                   value: 1948.80
