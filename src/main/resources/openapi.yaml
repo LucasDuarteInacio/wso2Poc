@@ -5,7 +5,7 @@ info:
   version: 1.0.0
 
 paths:
-  /api/clientes:
+  /clientes:
     get:
       summary: Listar todos os clientes
       operationId: listarClientes
@@ -41,7 +41,7 @@ paths:
         '400':
           description: Erro de validação
 
-  /api/clientes/{id}:
+  /clientes/{id}:
     get:
       summary: Buscar cliente por ID
       operationId: buscarClientePorId
@@ -63,7 +63,7 @@ paths:
         '404':
           description: Cliente não encontrado
 
-  /api/produtos:
+  /produtos:
     get:
       summary: Listar todos os produtos
       operationId: listarProdutos
@@ -99,7 +99,7 @@ paths:
         '400':
           description: Erro de validação
 
-  /api/produtos/{id}:
+  /produtos/{id}:
     get:
       summary: Buscar produto por ID
       operationId: buscarProdutoPorId
@@ -163,7 +163,7 @@ paths:
         '404':
           description: Produto não encontrado
 
-  /api/pedidos:
+  /pedidos:
     get:
       summary: Listar todos os pedidos
       operationId: listarPedidos
@@ -199,7 +199,7 @@ paths:
         '400':
           description: Erro de validação
 
-  /api/pedidos/{id}:
+  /pedidos/{id}:
     get:
       summary: Buscar pedido por ID
       operationId: buscarPedidoPorId
@@ -221,7 +221,7 @@ paths:
         '404':
           description: Pedido não encontrado
 
-  /api/pedidos/cliente/{clienteId}:
+  /pedidos/cliente/{clienteId}:
     get:
       summary: Listar pedidos por cliente
       operationId: listarPedidosPorCliente
@@ -243,7 +243,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/Pedido'
 
-  /api/pedidos/{id}/status:
+  /pedidos/{id}/status:
     patch:
       summary: Atualizar status do pedido
       operationId: atualizarStatusPedido
